@@ -1,0 +1,1110 @@
+Write a C program to Implement Binary search program
+#include <stdio.h>
+int binarySearch(int arr[], int l, int r, int x) {
+if (r >= l) {
+int mid = l + (r - l) / 2;
+// If the element is present at the middle
+if (arr[mid] == x)
+return mid;
+// If element is smaller than mid, then
+// it can only be present in left subarray
+if (arr[mid] > x)
+return binarySearch(arr, l, mid - 1, x);
+// Else the element can only be present in right subarray
+return binarySearch(arr, mid + 1, r, x);
+}
+// Element is not present in array
+return -1;
+}
+int main(void) {
+int arr[] = {2, 3, 4, 10, 40};
+int n = sizeof(arr) / sizeof(arr[0]);
+int x;
+printf("Enter the element to search: ");
+scanf("%d", &x);
+int result = binarySearch(arr, 0, n - 1, x);
+if (result == -1)
+printf("Element is not present in array\n");
+else printf("Element is present at index %d\n", result);
+return 0;
+}
+
+Write a C program to Implement Quicksort program
+#include<stdio.h>
+void quicksort(int x[25], int first, int last){
+int pivot, j, temporary, i;
+if(first<last) {
+pivot=first;
+i=first;
+j=last;
+while(i<j) {
+while(x[i]<=x[pivot]&&i<last)
+i++;
+while(x[j]>x[pivot])
+j--;
+if(i<j) {
+temporary=x[i];
+x[i]=x[j];
+x[j]=temporary;
+}
+} temporary=x[pivot];
+x[pivot]=x[j];
+x[j]=temporary;
+quicksort(x,first,j-1);
+quicksort(x,j+1,last);
+}
+}
+void main() {
+int x[25],n,i;
+printf("Enter the number of elements: ");
+scanf("%d",&n);
+printf("Enter %d elements: ",n);
+for(i=0;i<n;i++)
+scanf("%d",&x[i]);
+quicksort(x,0,n-1);
+printf("Sorted elements: ");
+for(i=0;i<n;i++)
+printf("%d ",x[i]);
+}
+
+Write a C program to Implement BST Inorder Traversal.
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* left;
+struct Node* right;
+};
+struct Node* newNode(int data) {
+struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+node->data = data;
+node->left = NULL;
+node->right = NULL;
+return node;
+}
+void inorderTraversal(struct Node* root) {
+if (root == NULL)
+return;
+inorderTraversal(root->left);
+printf("%d ", root->data);
+inorderTraversal(root->right);
+}
+int main() {
+struct Node* root = newNode(1);
+root->left = newNode(2);
+root->right = newNode(3);
+root->left->left = newNode(4);
+root->left->right = newNode(5);
+printf("Inorder traversal of the binary search tree: ");
+inorderTraversal(root);
+return 0;
+}
+
+Write a C program to Implement BST Preorder Traversal.
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* left;
+struct Node* right;
+};
+struct Node* newNode(int data) {
+struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+node->data = data;
+node->left = NULL;
+node->right = NULL;
+return node;
+}
+void preorderTraversal(struct Node* root) {
+if (root == NULL)
+return;
+printf("%d ", root->data);
+preorderTraversal(root->left);
+preorderTraversal(root->right);
+}
+int main() {
+struct Node* root = newNode(1);
+root->left = newNode(2);
+root->right = newNode(3);
+root->left->left = newNode(4);
+root->left->right = newNode(5);
+printf("Preorder traversal of the binary search tree: ");
+preorderTraversal(root);
+return 0;
+}
+
+Write a C program to Implement BST Postorder Traversal.
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* left;
+struct Node* right;
+};
+struct Node* newNode(int data) {
+struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+node->data = data;
+node->left = NULL;
+node->right = NULL;
+return node;
+}
+void postorderTraversal(struct Node* root) {
+if (root == NULL)
+return;
+postorderTraversal(root->left);
+postorderTraversal(root->right);
+printf("%d ", root->data);
+}
+int main() {
+struct Node* root = newNode(1);
+root->left = newNode(2);
+root->right = newNode(3);
+root->left->left = newNode(4);
+root->left->right = newNode(5);
+printf("Postorder traversal of the binary search tree: ");
+postorderTraversal(root);
+return 0;
+}
+
+Write a C program to Implement a Stack menu driven program using arrays
+# include<stdio.h>
+# include<conio.h>
+#include<stdlib.h>
+# define size 10
+void push();
+void pop();
+void display();
+int top=-1;
+int stack[size];
+void main()
+{
+int choice;
+while(1)
+{
+printf("1. push \n");
+printf("2. pop \n");
+printf("3. Display \n");
+printf("4. Quit \n");
+printf(" \n Enter your choice");
+scanf("%d", & choice);
+switch(choice)
+{
+case 1:push();
+break;
+case 2:pop();
+break;
+case 3:display();
+break;
+case 4: exit(1);
+default: printf("Invalid");
+}
+}
+}
+void push()
+{
+int item;
+if(top == (size-1))
+printf("\n stack overflow");
+else
+{
+printf("\n enter the element");
+scanf("%d", &item);
+top=top+1;
+stack[top]=item;
+}
+}
+void pop()
+{
+if (top==-1)
+printf("stack underflow");
+else
+{
+printf("\npoped element is: %d \n",stack[top]);
+top=top-1;
+}
+}
+void display()
+{
+int i;
+if (top==-1)
+printf("\n stack is emty\n");
+else
+{
+printf("stack element\n");
+for(i=top; i>=0; i--)
+printf ("%d\n", stack[i]); }}
+Write a C program to Implement Queue menu driven program using arrays.
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 10
+int queue_arr[MAX];
+int rear=-1;
+int front=-1;
+void insert(int item);
+int del();
+int peek();
+void display();
+int isFull();
+int isEmpty();
+int main()
+{
+int choice,item;
+while(1)
+{
+printf("\n1.Insert\n");
+printf("2.Delete\n");
+printf("3.Display element at the front\n");
+printf("4.Display all elements of the queue\n");
+printf("5.Quit\n");
+printf("\nEnter your choice : ");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+printf("\nInput the element for adding in queue : ");
+scanf("%d",&item);
+insert(item);
+break;
+case 2:
+item=del();
+printf("\nDeleted element is %d\n",item);
+break;
+case 3:
+printf("\nElement at the front is %d\n",peek());
+break;
+case 4:
+display();
+break;
+case 5:
+exit(1);
+default:
+printf("\nWrong choice\n");
+}
+}
+return 0;
+}
+void insert(int item)
+{
+if( isFull() )
+{
+printf("\nQueue Overflow\n");
+return;
+}
+if( front == -1 )
+front=0;
+rear=rear+1;
+queue_arr[rear]=item ;
+}
+int del()
+{
+int item;
+if( isEmpty() )
+{
+printf("\nQueue Underflow\n");
+exit(1);
+}
+item=queue_arr[front];
+front=front+1;
+return item;
+}
+int peek()
+{
+if( isEmpty() )
+{
+printf("\nQueue Underflow\n");
+exit(1);
+}
+return queue_arr[front];
+}
+int isEmpty()
+{
+if( front==-1 || front==rear+1 )
+return 1;
+else
+return 0;
+}
+int isFull()
+{
+if( rear==MAX-1 )
+return 1;
+else
+return 0;
+}
+void display()
+{
+int i;
+if ( isEmpty() )
+{
+printf("\nQueue is empty\n");
+return;
+}
+printf("\nQueue is :\n\n");
+for(i=front;i<=rear;i++)
+printf("%d ",queue_arr[i]);
+printf("\n\n");
+}
+Write a C program to Implement Stack using a linked list.
+#include <stdio.h>
+#include <stdlib.h>
+void push();
+void pop();
+void display();
+struct node
+{ int val;
+struct node *next;
+};
+struct node *head;
+void main ()
+{
+int choice=0;
+printf("\n*********Stack operations using linked list*********\n");
+printf("\n----------------------------------------------\n");
+while(choice != 4)
+{
+printf("\n\nChose one from the below options...\n");
+printf("\n1.Push\n2.Pop\n3.Show\n4.Exit");
+printf("\n Enter your choice \n");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+{
+push();
+break;
+}
+case 2:
+{
+pop();
+break;
+}
+case 3:
+{
+display();
+break;
+}
+case 4:
+{
+printf("Exiting....");
+break;
+}
+default:
+{
+printf("Please Enter valid choice ");
+}
+};
+}}
+void push ()
+{
+int val;
+struct node *ptr = (struct node*)malloc(sizeof(struct node));
+if(ptr == NULL)
+{
+printf("not able to push the element");
+}
+else
+{
+printf("Enter the value");
+scanf("%d",&val);
+if(head==NULL)
+{
+ptr->val = val;
+ptr -> next = NULL;
+head=ptr;
+}
+else
+{
+ptr->val = val;
+ptr->next = head;
+head=ptr;
+}
+printf("Item pushed");
+}
+}
+void pop()
+{
+int item;
+struct node *ptr;
+if (head == NULL)
+{
+printf("Underflow");
+}
+else
+{
+item = head->val;
+ptr = head;
+head = head->next;
+free(ptr);
+printf("Item popped");
+}
+}
+void display()
+{
+int i;
+struct node *ptr;
+ptr=head;
+if(ptr == NULL)
+{
+printf("Stack is empty\n");
+}
+else
+{
+printf("Printing Stack elements \n");
+while(ptr!=NULL)
+{
+printf("%d\n",ptr->val);
+ptr = ptr->next;
+}
+}
+}
+9 Write a C program to Implement Queue using a linked list.
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node *next;
+};
+struct node *front;
+struct node *rear;
+void insert();
+void delete();
+void display();
+void main ()
+{
+int choice;
+while(choice != 4)
+{
+printf("\n*************************Main Menu*****************************\n");
+printf("\n=================================================================\n")
+;
+printf("\n1.insert an element\n2.Delete an element\n3.Display the queue\n4.Exit\n");
+printf("\nEnter your choice ?");
+scanf("%d",& choice);
+switch(choice)
+{
+case 1:
+insert();
+break;
+case 2:
+delete();
+break;
+case 3:
+display();
+break;
+case 4:
+exit(0);
+break;
+default:
+printf("\nEnter valid choice??\n");
+}
+}
+}
+void insert()
+{
+struct node *ptr;
+int item;
+ptr = (struct node *) malloc (sizeof(struct node));
+if(ptr == NULL)
+{
+printf("\nOVERFLOW\n");
+return;
+}
+else
+{
+printf("\nEnter value?\n");
+scanf("%d",&item);
+ptr -> data = item;
+if(front == NULL)
+{
+front = ptr;
+rear = ptr;
+front -> next = NULL;
+rear -> next = NULL;
+}
+else
+{
+rear -> next = ptr;
+rear = ptr;
+rear->next = NULL;
+}
+}
+}
+void delete ()
+{
+struct node *ptr;
+if(front == NULL)
+{
+printf("\nUNDERFLOW\n");
+return;
+}
+else
+{
+ptr = front;
+front = front -> next;
+free(ptr);
+}
+}
+void display()
+{
+struct node *ptr;
+ptr = front;
+if(front == NULL)
+{
+printf("\nEmpty queue\n");
+}
+else
+{ printf("\nprinting values .....\n");
+while(ptr != NULL)
+{
+printf("\n%d\n",ptr -> data);
+ptr = ptr -> next;
+}
+}
+}
+10 Write a C program to Insert Node at Beginning in Singly Linked List
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* next;
+};
+struct Node* head = NULL;
+void insertAtBeginning(int data) {
+struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+newNode->data = data;
+newNode->next = head;
+head = newNode;
+}
+void printList() {
+struct Node* temp = head;
+while (temp != NULL) {
+printf("%d ", temp->data);
+temp = temp->next;
+}
+printf("\n");
+}
+int main() {
+insertAtBeginning(3);
+insertAtBeginning(2);
+insertAtBeginning(1);
+printf("Linked list after insertions: ");
+printList();
+return 0;
+}
+11 Write a C program to Insert Node at End in Singly Linked List
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* next;
+};
+struct Node* head = NULL;
+void insertAtEnd(int data) {
+struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+newNode->data = data;
+newNode->next = NULL;
+if (head == NULL) {
+head = newNode;
+} else {
+struct Node* temp = head;
+while (temp->next != NULL) {
+temp = temp->next;
+} temp->next =
+newNode;
+}
+}
+void printList() {
+struct Node* temp = head;
+while (temp != NULL) {
+printf("%d ", temp->data);
+temp = temp->next;
+}
+printf("\n");
+} int main() {
+insertAtEnd(1);
+insertAtEnd(2);
+insertAtEnd(3);
+printf("Linked list after insertions: ");
+printList();
+return 0;
+}
+12 Write a C program to Delete Node at Beginning in Singly Linked List.
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* next;
+};
+struct Node* head = NULL;
+void deleteAtBeginning() {
+if (head == NULL) {
+printf("List is empty\n");
+return;
+}
+struct Node* temp = head;
+head = head->next;
+free(temp);
+}
+void printList() {
+struct Node* temp = head;
+while (temp != NULL) {
+printf("%d ", temp->data);
+temp = temp->next;
+}
+printf("\n");
+}
+int main() {
+insertAtBeginning(3);
+insertAtBeginning(2);
+insertAtBeginning(1);
+printf("Linked list before deletion: ");
+printList();
+deleteAtBeginning();
+deleteAtBeginning();
+printf("Linked list after deletions: ");
+printList();
+return 0;
+}
+13 Write a C program to Delete Node at End in Singly Linked List
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* next;
+};
+struct Node* head = NULL;
+void deleteAtEnd() {
+if (head == NULL) {
+printf("List is empty\n");
+return;
+}
+if (head->next == NULL) {
+free(head);
+head = NULL;
+return;
+}
+struct Node* temp = head;
+while (temp->next->next != NULL) {
+temp = temp->next;
+} free(temp->next);
+temp->next = NULL;
+}
+void printList() {
+struct Node* temp = head;
+while (temp != NULL) {
+printf("%d ", temp->data);
+temp = temp->next;
+}
+printf("\n");
+}
+int main() {
+insertAtEnd(1);
+insertAtEnd(2);
+insertAtEnd(3);
+printf("Linked list before deletion: ");
+printList();
+deleteAtEnd();
+printf("Linked list after deletion: ");
+printList();
+return 0;
+}
+Write a C program to Implement Adjacency list.
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#define V 5 // Number of vertices
+struct AdjListNode {
+int dest;
+int weight;
+struct AdjListNode* next;
+};
+struct AdjList {
+struct AdjListNode* head;
+};
+struct Graph {
+int V;
+struct AdjList* array;
+};
+struct AdjListNode* newAdjListNode(int dest, int weight) {
+struct AdjListNode* newNode = (struct AdjListNode*)malloc(sizeof(struct AdjListNode));
+newNode->dest = dest;
+newNode->weight = weight;
+newNode->next = NULL;
+return newNode;
+}
+struct Graph* createGraph(int V) {
+struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+graph->V = V;
+graph->array = (struct AdjList*)malloc(V * sizeof(struct AdjList));
+for (int i = 0; i < V; ++i) {
+graph->array[i].head = NULL;
+}
+return graph;
+}
+void addEdge(struct Graph* graph, int src, int dest, int weight) {
+struct AdjListNode* newNode = newAdjListNode(dest, weight);
+newNode->next = graph->array[src].head;
+graph->array[src].head = newNode;
+// For undirected graphs, add the reverse edge also
+newNode = newAdjListNode(src, weight);
+newNode->next = graph->array[dest].head;
+graph->array[dest].head = newNode;
+}
+void printGraph(struct Graph* graph) {
+for (int i = 0; i < graph->V; ++i) {
+struct AdjListNode* pCrawl = graph->array[i].head;
+printf("\n Adjacency list of vertex %d:\n", i);
+while (pCrawl) {
+printf(" -> %d (%d)", pCrawl->dest, pCrawl->weight);
+pCrawl = pCrawl->next;
+}
+printf("\n");
+}
+}
+int main() {
+int V = 5;
+struct Graph* graph = createGraph(V);
+addEdge(graph, 0, 1, 1);
+addEdge(graph, 0, 4, 2);
+addEdge(graph, 1, 2, 1);
+addEdge(graph, 2, 3, 1);
+addEdge(graph, 3, 1, 1);
+printGraph(graph);
+return 0;
+}
+15 Write a C program to Implement Adjacency matrix
+#include <stdio.h>
+#include <stdlib.h>
+#define V 5 // Number of vertices
+void addEdge(int adjMatrix[][V], int src, int dest, int weight) {
+adjMatrix[src][dest] = weight;
+// For undirected graphs, add the reverse edge also
+adjMatrix[dest][src] = weight;
+}
+void printGraph(int adjMatrix[][V]) {
+for (int i = 0; i < V; ++i) {
+for (int j = 0; j < V; ++j) {
+printf("%d ", adjMatrix[i][j]);
+}
+printf("\n");
+}
+}
+int main() {
+int adjMatrix[V][V];
+// Initialize adjacency matrix to 0
+for (int i = 0; i < V; ++i) {
+for (int j = 0; j < V; ++j) {
+adjMatrix[i][j] = 0;
+}
+}
+addEdge(adjMatrix, 0, 1, 1);
+addEdge(adjMatrix, 0, 4, 2);
+addEdge(adjMatrix, 1, 2, 1);
+addEdge(adjMatrix, 2, 3, 1);
+addEdge(adjMatrix, 3, 1, 1);
+printGraph(adjMatrix);
+return 0;
+}
+.
+16
+Write a C program to Implement Graph menu driven program DFS.
+#include <stdio.h>
+#include <stdlib.h>
+#define V 5 // Number of vertices
+struct AdjListNode {
+int dest;
+struct AdjListNode* next;
+};
+struct AdjList {
+struct AdjListNode* head;
+};
+struct Graph {
+int V;
+struct AdjList* array;
+};
+struct AdjListNode* newAdjListNode(int dest) {
+struct AdjListNode* newNode = (struct AdjListNode*)malloc(sizeof(struct AdjListNode));
+newNode->dest = dest;
+newNode->next = NULL;
+return newNode;
+}
+struct Graph* createGraph(int V) {
+struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+graph->V = V;
+graph->array = (struct AdjList*)malloc(V * sizeof(struct AdjList));
+for (int i = 0; i < V; ++i) {
+graph->array[i].head = NULL;
+}
+return graph;
+}
+void addEdge(struct Graph* graph, int src, int dest) {
+struct AdjListNode* newNode = newAdjListNode(dest);
+newNode->next = graph->array[src].head;
+graph->array[src].head = newNode;
+}
+void DFSUtil(struct Graph* graph, int v, int visited[]) {
+visited[v] = 1;
+printf("%d ", v);
+struct AdjListNode* pCrawl = graph->array[v].head;
+while (pCrawl != NULL) {
+if (visited[pCrawl->dest] == 0) {
+DFSUtil(graph, pCrawl->dest, visited);
+}
+pCrawl = pCrawl->next;
+}
+}
+void DFS(struct Graph* graph, int start) {
+int visited[V];
+for (int i = 0; i < V; ++i) {
+visited[i] = 0;
+}
+DFSUtil(graph, start, visited);
+}
+void printMenu() {
+printf("\nDFS Menu:\n");
+printf("1. Add Edge\n");
+printf("2. Perform DFS\n");
+printf("3. Exit\n");
+}
+int main() {
+struct Graph* graph = createGraph(V);
+int choice, src, dest;
+while (1) {
+printMenu();
+printf("Enter your choice: ");
+scanf("%d", &choice);
+switch (choice) {
+case 1:
+printf("Enter source and destination: ");
+scanf("%d %d", &src, &dest);
+addEdge(graph, src, dest);
+break;
+case 2:
+printf("Enter the starting vertex for DFS: ");
+scanf("%d", &src);
+DFS(graph, src);
+break;
+case 3:
+exit(0);
+default:
+printf("Invalid choice!\n");
+}
+}
+return 0;
+}
+17 Write a C program to Implement Graph menu driven program BFS
+#include <stdio.h>
+#include <stdlib.h>
+#include <queue>
+#define V 5 // Number of vertices
+struct AdjListNode {
+int dest;
+struct AdjListNode* next;
+};
+struct AdjList {
+struct AdjListNode* head;
+};
+struct Graph {
+int V;
+struct AdjList* array;
+};
+struct AdjListNode* newAdjListNode(int dest) {
+struct AdjListNode* newNode = (struct AdjListNode*)malloc(sizeof(struct AdjListNode));
+newNode->dest = dest;
+newNode->next = NULL;
+return newNode;
+}
+struct Graph* createGraph(int V) {
+struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+graph->V = V;
+graph->array = (struct AdjList*)malloc(V * sizeof(struct AdjList));
+for (int i = 0; i < V; ++i) {
+graph->array[i].head = NULL;
+}
+return graph;
+}
+void addEdge(struct Graph* graph, int src, int dest) {
+struct AdjListNode* newNode = newAdjListNode(dest);
+newNode->next = graph->array[src].head;
+graph->array[src].head = newNode;
+}
+void BFS(struct Graph* graph, int start) {
+int visited[V] = {0};
+std::queue<int> q;
+visited[start] = 1;
+q.push(start);
+while (!q.empty()) {
+int s = q.front();
+q.pop();
+printf("%d ", s);
+struct AdjListNode* pCrawl = graph->array[s].head;
+while (pCrawl != NULL) {
+if (!visited[pCrawl->dest]) {
+visited[pCrawl->dest] = 1;
+q.push(pCrawl->dest);
+}
+pCrawl = pCrawl->next;
+}
+}
+}
+int main() {
+struct Graph* graph = createGraph(V);
+// Add edges here
+BFS(graph, 0); // Start BFS from vertex 0
+return 0;
+}
+18 Write a C program to Implement Merge Sort program
+#include <stdio.h>
+void merge(int arr[], int left, int mid, int right) {
+int i, j, k;
+int leftSize = mid - left + 1;
+int rightSize = right - mid;
+int leftArr[leftSize];
+int rightArr[rightSize];
+for (i = 0; i < leftSize; i++)
+leftArr[i] = arr[left + i];
+for (j = 0; j < rightSize; j++)
+rightArr[j] = arr[mid + 1 + j];
+i = 0;
+j = 0;
+k = left;
+while (i < leftSize && j < rightSize) {
+if (leftArr[i] <= rightArr[j]) {
+arr[k] = leftArr[i];
+i++;
+} else {
+arr[k] = rightArr[j];
+j++;
+}
+k++;
+}
+while (i < leftSize) {
+arr[k] = leftArr[i];
+i++;
+k++;
+}
+while (j < rightSize) {
+arr[k] = rightArr[j];
+j++;
+k++;
+}
+}
+void mergeSort(int arr[], int left, int right) {
+if (left < right) {
+int mid = left + (right - left) / 2;
+mergeSort(arr, left, mid);
+mergeSort(arr, mid + 1, right);
+merge(arr, left, mid, right);
+}
+}
+void printArray(int arr[], int size) {
+int i;
+for (i = 0; i < size; i++)
+printf("%d ", arr[i]);
+printf("\n");
+}
+int main() {
+int arr[] = { 12, 11, 13, 5, 6, 7 };
+int arrSize = sizeof(arr) / sizeof(arr[0]);
+printf("Given array is \n");
+printArray(arr, arrSize);
+mergeSort(arr, 0, arrSize - 1);
+printf("\nSorted array is \n");
+printArray(arr, arrSize);
+return 0;
+}
+19
+Write a C program to Implement Infix to Postfix Conversion.
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX_SIZE 100
+struct Stack {
+char data[MAX_SIZE];
+int top;
+};
+void initializeStack(struct Stack* stack) {
+stack->top = -1;
+}
+int isEmpty(struct Stack* stack) {
+return stack->top == -1;
+}
+int isFull(struct Stack* stack) {
+return stack->top == MAX_SIZE - 1;
+}
+void push(struct Stack* stack, char c) {
+if (isFull(stack)) {
+printf("Stack Overflow\n");
+return;
+} stack->data[++stack->top] =
+c;
+}
+char pop(struct Stack* stack) {
+if (isEmpty(stack)) {
+printf("Stack Underflow\n");
+return '\0';
+}
+return stack->data[stack->top--];
+}
+int precedence(char c) {
+if (c == '^') {
+return 3;
+} else if (c == '*' || c == '/') {
+return 2;
+} else if (c == '+' || c == '-') {
+return 1;
+} else {
+return 0;
+}
+}
+void infixToPostfix(char* infix, char* postfix) {
+struct Stack stack;
+initializeStack(&stack);
+int i = 0, j = 0;
+while (infix[i] != '\0') {
+if (isalnum(infix[i])) {
+postfix[j++] = infix[i];
+} else if (infix[i] == '(') {
+push(&stack, infix[i]);
+} else if (infix[i] == ')') {
+while (!isEmpty(&stack) && stack.data[stack.top] != '(') {
+postfix[j++] = pop(&stack);
+}
+pop(&stack); // Pop the '('
+} else {
+while (!isEmpty(&stack) && precedence(infix[i]) <= precedence(stack.data[stack.top])) {
+postfix[j++] = pop(&stack);
+}
+push(&stack, infix[i]);
+} i++;
+}
+while (!isEmpty(&stack)) {
+postfix[j++] = pop(&stack);
+}
+postfix[j] = '\0';
+}
+int main() {
+char infix[MAX_SIZE], postfix[MAX_SIZE];
+printf("Enter an infix expression: ");
+scanf("%s", infix);
+infixToPostfix(infix, postfix);
+printf("Postfix expression: %s\n", postfix);
+return 0;
+}
+20 Write a C program to Implement Tower of Hanoi
+#include <stdio.h>
+void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod) {
+if (n == 1) {
+printf("Move disk 1 from rod %c to rod %c\n", from_rod, to_rod);
+return;
+} towerOfHanoi(n
+-
+1, from_rod, aux_rod, to_rod);
+printf("Move disk %d from rod %c to rod %c\n", n, from_rod, to_rod);
+towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+}
+int main() {
+int n = 3; // Number of disks
+towerOfHanoi(n, 'A', 'C', 'B'); // A, B, C are the rods
+return 0;
+}
